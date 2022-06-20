@@ -3,7 +3,7 @@ node_modules
 coverage
 coverage.json
 typechain
-.env.example
+
 
 #Hardhat files
 cache
@@ -11,6 +11,7 @@ artifacts
 .DS_Store
 gas-report.txt
 deployments
+.env.example
 
 # Patrick
 .notes.md
