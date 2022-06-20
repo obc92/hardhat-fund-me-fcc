@@ -4,6 +4,7 @@ require("@nomiclabs/hardhat-etherscan")
 require("dotenv").config()
 require("solidity-coverage")
 require("hardhat-deploy")
+
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 /**
@@ -18,10 +19,18 @@ const PRIVATE_KEY =
     process.env.PRIVATE_KEY ||
     "0x11ee3108a03081fe260ecdc106554d09d9d1209bcafd46942b10e02943effc4a"
 const ETHERSCAN_API_KEY = process.env.ETHERSCAN_API_KEY || ""
+const RINKEBY_RPC_URL =
+    process.env.RINKEBY_RPC_URL || "https://eth-rinkeby.alchemyapi.io/v2/eD_uETVm9ed47J8QplYijlrAnO1Dd24J"
 
 module.exports = {
     defaultNetwork: "hardhat",
     networks: {
+        rinkeby: {
+            url: RINKEBY_RPC_URL,
+            accounts: [PRIVATE_KEY],
+            chainId: 4,
+            blockConfirmations: 6,
+        },
         hardhat: {
             chainId: 31337,
             // gasPrice: 130000000000,
@@ -48,10 +57,11 @@ module.exports = {
     },
     gasReporter: {
         enabled: true,
-        currency: "USD",
         outputFile: "gas-report.txt",
         noColors: true,
-        // coinmarketcap: COINMARKETCAP_API_KEY,
+        currency: "USD",
+        coinmarketcap: COINMARKETCAP_API_KEY,
+        token: "ETH",
     },
     namedAccounts: {
         deployer: {

@@ -6,7 +6,7 @@ async function main() {
   console.log(`Got contract FundMe at ${fundMe.address}`)
   console.log("Withdrawing from contract...")
   const transactionResponse = await fundMe.withdraw()
-  await transactionResponse.wait()
+  await transactionResponse.wait(1)
   console.log("Got it back!")
 }
 
